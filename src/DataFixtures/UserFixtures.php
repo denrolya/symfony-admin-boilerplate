@@ -38,7 +38,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface, Container
         $user
             ->setUsername('admin')
             ->setEmail('admin@example.com')
-            ->setRoles(array('ROLE_ADMIN'))
+            ->setRoles(['ROLE_ADMIN'])
             ->setPlainPassword($this->testPassword)
             ->setEnabled(true);
 
