@@ -21,6 +21,7 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
             $category->setName($categoryName);
 
             $manager->persist($category);
+            unset($category);
         }
 
         $manager->flush();
@@ -28,6 +29,6 @@ class CategoryFixtures extends Fixture implements OrderedFixtureInterface
 
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 }
