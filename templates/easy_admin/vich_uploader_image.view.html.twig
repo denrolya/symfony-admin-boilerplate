@@ -1,0 +1,14 @@
+{% if item.images|length > 0 %}
+    {% for image in item.images %}
+        <a href="#" class="easyadmin-thumbnail" data-featherlight="#easyadmin-lightbox-{{ image.id }}"
+           data-featherlight-close-on-click="anywhere">
+            <img src="{{ vich_uploader_asset(image, 'imageFile') }}">
+        </a>
+
+        <div id="easyadmin-lightbox-{{ image.id }}" class="easyadmin-lightbox">
+            <img src="{{ vich_uploader_asset(image, 'imageFile') }}">
+        </div>
+    {% else %}
+        <em>No image uploaded</em>
+    {% endfor %}
+{% endif %}
