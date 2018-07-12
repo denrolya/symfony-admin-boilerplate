@@ -1,0 +1,20 @@
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: App\Entity\User
+    group:
+        group_class: App\Entity\Group
+    service:
+        mailer: fos_user.mailer.twig_swift
+    from_email:
+        address: "%env(mailer_user_address)%"
+        sender_name: "%env(mailer_user)%"
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        "%env(mailer_user_address)%"
+                sender_name:    "%env(mailer_user)%"
+    resetting:
+        email:
+            template:   email/password_resetting.email.twig

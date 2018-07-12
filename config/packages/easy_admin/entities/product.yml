@@ -1,0 +1,39 @@
+easy_admin:
+    entities:
+        Product:
+            class: App\Entity\Product
+            label: 'Products'
+            list:
+                actions:
+                    - { name: 'show', icon: 'search', label: false, title: 'Show' }
+                    - { name: 'edit', icon: 'pencil', label: false, title: 'Edit' }
+                    - { name: 'delete', icon: 'remove', label: false, title: 'Delete' }
+                fields:
+                    - id
+                    - name
+                    - category
+                    - { property: tags, type: array }
+                    - updatedAt
+                    - { property: image, type: image, base_path: '%app.path.product_images%', template: 'vich_uploader_image.html.twig' }
+            show:
+                fields:
+                    - id
+                    - name
+                    - shortDescription
+                    - longDescription
+                    - tags
+                    - { property: images, type: image, base_path: '%app.path.product_images%', template: 'vich_uploader_image.html.twig' }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
+                    - { property: 'category' }
+                    - { type: 'divider' }
+                    - { property: 'name', css_class: 'large' }
+                    - { property: 'shortDescription', type: 'text' }
+                    - { property: 'longDescription', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
+
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
+                    - { property: tagsText, type: text, label: 'Tags' }
+
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }
+                    - { property: images, type: collection, type_options: { entry_type: 'App\Form\ImageType', by_reference: false } }

@@ -1,0 +1,10 @@
+easy_admin:
+    design:
+        menu:
+            -
+                label: Product
+                icon: 'shopping-basket'
+                children:
+                    - { entity: Product, icon: 'th-list', label: List Products, params: { action: list, sortField: createdAt } }
+                    - { entity: Category, icon: 'tags', label: Categories, params: { action: list }}
+                    - { entity: Product, icon: 'plus-circle', label: Add Product, params: { action: new }}
