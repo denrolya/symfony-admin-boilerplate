@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cda2e86f2fef0c5a229512097b3d7cf",
+    "content-hash": "37dc6ab9cc0c531d9f7f1003d6963fc8",
     "packages": [
         {
             "name": "beelab/tag-bundle",
