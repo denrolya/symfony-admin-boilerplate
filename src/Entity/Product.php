@@ -5,8 +5,6 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Gedmo\Translatable\Translatable;
-use App\Traits\TranslatableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Beelab\TagBundle\Entity\AbstractTaggable;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,9 +13,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @Vich\Uploadable
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
-class Product extends AbstractTaggable implements Translatable
+class Product extends AbstractTaggable
 {
-    use TimestampableEntity, TranslatableEntity;
+    use TimestampableEntity;
 
     /**
      * @ORM\Id()
@@ -27,7 +25,6 @@ class Product extends AbstractTaggable implements Translatable
     private $id;
 
     /**
-     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -46,13 +43,11 @@ class Product extends AbstractTaggable implements Translatable
     private $category;
 
     /**
-     * @Gedmo\Translatable
      * @ORM\Column(type="string", length=255)
      */
     private $shortDescription;
 
     /**
-     * @Gedmo\Translatable
      * @ORM\Column(type="text", nullable=true)
      */
     private $longDescription;
@@ -67,13 +62,6 @@ class Product extends AbstractTaggable implements Translatable
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product", cascade={"persist"})
      */
     private $images;
-
-    /**
-     * @Gedmo\Locale
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     */
-    private $locale;
 
     public function __construct()
     {
@@ -218,10 +206,5 @@ class Product extends AbstractTaggable implements Translatable
     public function getImages()
     {
         return $this->images;
-    }
-
-    public function setTranslatableLocale($locale)
-    {
-        $this->locale = $locale;
     }
 }
