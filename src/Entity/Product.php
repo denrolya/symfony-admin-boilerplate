@@ -55,6 +55,21 @@ class Product extends AbstractTaggable
         return $this->id;
     }
 
+    public function getName()
+    {
+        return $this->translate($this->defaultLocale)->getName();
+    }
+
+    public function getSlug()
+    {
+        return $this->translate($this->defaultLocale)->getSlug();
+    }
+
+    public function getDescription()
+    {
+        return $this->translate($this->defaultLocale)->getDescription();
+    }
+
     /**
      * @return Category
      */

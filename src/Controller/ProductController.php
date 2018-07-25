@@ -52,10 +52,6 @@ class ProductController extends Controller
      */
     public function productView(Product $product)
     {
-        $em = $this->get('doctrine.orm.entity_manager');
-        $product->setTranslatableLocale('de_DE');
-        $em->refresh($product);
-
         return $this->render('app/product/view.html.twig', [
             'product' => $product
         ]);

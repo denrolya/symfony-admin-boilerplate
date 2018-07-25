@@ -8,7 +8,7 @@
         <div class="lead">
             {% for product in products %}
                 <a href="{{ path('product_view', { id: product.id }) }}" class="list-group-item list-group-item-action">
-                    {{ product.name }}
+                    {{ product.translate(app.request.locale).name }}
                 </a>
             {% endfor %}
         </div>
