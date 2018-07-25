@@ -10,7 +10,6 @@ easy_admin:
                     - { name: 'delete', icon: 'remove', label: false, title: 'Delete' }
                 fields:
                     - id
-                    - name
                     - category
                     - { property: tags, type: array }
                     - updatedAt
@@ -18,21 +17,23 @@ easy_admin:
             show:
                 fields:
                     - id
-                    - name
-                    - shortDescription
-                    - longDescription
                     - tags
                     - { property: image, type: image, base_path: '%app.path.product_images%', template: 'vich_uploader_image.view.html.twig' }
             form:
                 fields:
-                    - { type: 'group', css_class: 'col-sm-8', label: 'Basic information', icon: 'pencil' }
-                    - { property: 'category' }
-                    - { type: 'divider' }
-                    - { property: 'name', css_class: 'large' }
-                    - { property: 'shortDescription', type: 'text' }
-                    - { property: 'longDescription', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
+                    - { type: 'group', css_class: 'col-sm-8', label: 'General information', icon: 'pencil' }
+                    -   property: translations
+                        type: 'A2lix\TranslationFormBundle\Form\Type\TranslationsType'
+                        type_options:
+                            label: false
+                            fields:
+                                description:
+                                    field_type: 'FOS\CKEditorBundle\Form\Type\CKEditorType'
+                            excluded_fields: ['slug']
 
-                    - { type: 'group', css_class: 'col-sm-4', label: 'Product Details', icon: 'cube' }
+                    - { type: 'group', css_class: 'col-sm-4', label: 'Grouping', icon: 'pencil' }
+                    - { property: category }
+                    - { type: divider }
                     - { property: tagsText, type: text, label: 'Tags' }
 
                     - { type: 'group', css_class: 'col-sm-4', label: 'Attachments', icon: 'paperclip' }

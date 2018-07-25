@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New product{% endblock title %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock body %}

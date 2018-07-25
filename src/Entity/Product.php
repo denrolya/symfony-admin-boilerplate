@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
+use Knp\DoctrineBehaviors\Model\Translatable\Translatable;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Beelab\TagBundle\Entity\AbstractTaggable;
@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Product extends AbstractTaggable
 {
-    use TimestampableEntity;
+    use TimestampableEntity, Translatable;
 
     /**
      * @ORM\Id()
@@ -25,32 +25,10 @@ class Product extends AbstractTaggable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @Gedmo\Slug(fields={"name"}, updatable=false)
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
-     */
-    private $slug;
-
-    /**
-     *
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
      */
     private $category;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $shortDescription;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $longDescription;
 
     /**
      * @var ArrayCollection
@@ -70,57 +48,11 @@ class Product extends AbstractTaggable
     }
 
     /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->name;
-    }
-
-    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return $this
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param string $slug
-     * @return $this
-     */
-    public function setSlug(string $slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     /**
@@ -138,44 +70,6 @@ class Product extends AbstractTaggable
     public function setCategory(Category $category)
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return null|string
-     */
-    public function getShortDescription()
-    {
-        return $this->shortDescription;
-    }
-
-    /**
-     * @param null|string $shortDescription
-     * @return $this
-     */
-    public function setShortDescription(?string $shortDescription)
-    {
-        $this->shortDescription = $shortDescription;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLongDescription()
-    {
-        return $this->longDescription;
-    }
-
-    /**
-     * @param string $longDescription
-     * @return $this
-     */
-    public function setLongDescription(string $longDescription)
-    {
-        $this->longDescription = $longDescription;
 
         return $this;
     }
